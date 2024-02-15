@@ -28,38 +28,40 @@ func Tag(application *api.Application) (err error) {
 		return
 	}
 	wanted := make(map[uint]bool)
-	languages, err := recognizer.Analyze(SourceDir)
-	for _, l := range languages {
-		lt := api.Tag{
-			Name:     l.Name,
-			Category: api.Ref{ID: lc.ID},
-		}
-		err = addon.Tag.Ensure(&lt)
-		if err != nil {
-			return
-		}
-		wanted[lt.ID] = true
-		for _, f := range l.Frameworks {
-			ft := api.Tag{
-				Name:     f,
-				Category: api.Ref{ID: fc.ID},
+	components, err := recognizer.DetectComponents(SourceDir)
+	for _, c := range components {
+		for _, l := range c.Languages {
+			lt := api.Tag{
+				Name:     l.Name,
+				Category: api.Ref{ID: lc.ID},
 			}
-			err = addon.Tag.Ensure(&ft)
+			err = addon.Tag.Ensure(&lt)
 			if err != nil {
 				return
 			}
-			wanted[ft.ID] = true
-		}
-		for _, t := range l.Tools {
-			tt := api.Tag{
-				Name:     t,
-				Category: api.Ref{ID: tc.ID},
+			wanted[lt.ID] = true
+			for _, f := range l.Frameworks {
+				ft := api.Tag{
+					Name:     f,
+					Category: api.Ref{ID: fc.ID},
+				}
+				err = addon.Tag.Ensure(&ft)
+				if err != nil {
+					return
+				}
+				wanted[ft.ID] = true
 			}
-			err = addon.Tag.Ensure(&tt)
-			if err != nil {
-				return
+			for _, t := range l.Tools {
+				tt := api.Tag{
+					Name:     t,
+					Category: api.Ref{ID: tc.ID},
+				}
+				err = addon.Tag.Ensure(&tt)
+				if err != nil {
+					return
+				}
+				wanted[tt.ID] = true
 			}
-			wanted[tt.ID] = true
 		}
 	}
 	tagIds := []uint{}
