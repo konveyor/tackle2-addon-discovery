@@ -1,0 +1,8 @@
+apiVersion: tackle.konveyor.io/v1alpha1
+kind: Addon
+metadata:
+  name: alizer
+  namespace: konveyor-tackle
+spec:
+  image: 'quay.io/slucidi/tackle2-addon-alizer:latest'
+  imagePullPolicy: Always
