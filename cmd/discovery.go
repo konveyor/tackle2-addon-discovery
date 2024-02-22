@@ -5,72 +5,107 @@ import (
 	"path"
 	"strings"
 
+	alizer "github.com/devfile/alizer/pkg/apis/model"
 	"github.com/devfile/alizer/pkg/apis/recognizer"
 	"github.com/konveyor/tackle2-addon/repository"
 	"github.com/konveyor/tackle2-hub/api"
 )
 
+const (
+	CategoryLanguage  = "Language"
+	CategoryFramework = "Framework"
+	CategoryTooling   = "Tooling"
+)
+
+var Categories = []string{CategoryLanguage, CategoryFramework, CategoryTooling}
+
 // Tag the application with discovered attributes.
 func Tag(application *api.Application) (err error) {
-	lc := api.TagCategory{Name: "Language"}
-	err = addon.TagCategory.Ensure(&lc)
+	cats, err := ensureCategories()
 	if err != nil {
 		return
 	}
-	fc := api.TagCategory{Name: "Framework"}
-	err = addon.TagCategory.Ensure(&fc)
-	if err != nil {
-		return
+	seen := make(map[uint]map[string]bool)
+	for _, v := range cats {
+		seen[v] = make(map[string]bool)
 	}
-	tc := api.TagCategory{Name: "Tooling"}
-	err = addon.TagCategory.Ensure(&tc)
-	if err != nil {
-		return
-	}
-	wanted := make(map[uint]bool)
-	components, err := recognizer.DetectComponents(SourceDir)
-	for _, c := range components {
-		for _, l := range c.Languages {
-			lt := api.Tag{
-				Name:     l.Name,
-				Category: api.Ref{ID: lc.ID},
-			}
-			err = addon.Tag.Ensure(&lt)
-			if err != nil {
-				return
-			}
-			wanted[lt.ID] = true
-			for _, f := range l.Frameworks {
-				ft := api.Tag{
-					Name:     f,
-					Category: api.Ref{ID: fc.ID},
-				}
-				err = addon.Tag.Ensure(&ft)
+
+	ids := []uint{}
+	languages, err := recognizer.Analyze(SourceDir)
+	for _, l := range languages {
+		for _, t := range tags(l, cats) {
+			if !seen[t.Category.ID][t.Name] {
+				seen[t.Category.ID][t.Name] = true
+				err = addon.Tag.Ensure(&t)
 				if err != nil {
 					return
 				}
-				wanted[ft.ID] = true
-			}
-			for _, t := range l.Tools {
-				tt := api.Tag{
-					Name:     t,
-					Category: api.Ref{ID: tc.ID},
-				}
-				err = addon.Tag.Ensure(&tt)
-				if err != nil {
-					return
-				}
-				wanted[tt.ID] = true
+				ids = append(ids, t.ID)
 			}
 		}
 	}
-	tagIds := []uint{}
-	for id, _ := range wanted {
-		tagIds = append(tagIds, id)
+	components, err := recognizer.DetectComponents(SourceDir)
+	for _, c := range components {
+		for _, l := range c.Languages {
+			for _, t := range tags(l, cats) {
+				if !seen[t.Category.ID][t.Name] {
+					seen[t.Category.ID][t.Name] = true
+					err = addon.Tag.Ensure(&t)
+					if err != nil {
+						return
+					}
+					ids = append(ids, t.ID)
+				}
+			}
+		}
 	}
-	tags := addon.Application.Tags(application.ID)
-	tags.Source(Source)
-	err = tags.Replace(tagIds)
+	appTags := addon.Application.Tags(application.ID)
+	appTags.Source(Source)
+	err = appTags.Replace(ids)
+	return
+}
+
+// determine tags required for alizer language result
+func tags(language alizer.Language, cats map[string]uint) (tags []api.Tag) {
+	tags = append(tags, api.Tag{
+		Name:     language.Name,
+		Category: api.Ref{ID: cats[CategoryLanguage]},
+	})
+	for _, f := range language.Frameworks {
+		tags = append(tags, api.Tag{
+			Name:     f,
+			Category: api.Ref{ID: cats[CategoryFramework]},
+		})
+	}
+	for _, t := range language.Tools {
+		tags = append(tags, api.Tag{
+			Name:     t,
+			Category: api.Ref{ID: cats[CategoryTooling]},
+		})
+	}
+	return
+}
+
+// ensure required categories exist
+func ensureCategories() (cats map[string]uint, err error) {
+	cats = make(map[string]uint)
+	for _, category := range Categories {
+		err = ensureCategory(category, cats)
+		if err != nil {
+			return
+		}
+	}
+	return
+}
+
+// ensure tag category exists
+func ensureCategory(category string, cats map[string]uint) (err error) {
+	cat := api.TagCategory{Name: category}
+	err = addon.TagCategory.Ensure(&cat)
+	if err != nil {
+		return
+	}
+	cats[category] = cat.ID
 	return
 }
 

@@ -13,7 +13,7 @@ var (
 	addon     = hub.Addon
 	Dir       = ""
 	SourceDir = ""
-	Source    = "discovery"
+	Source    = "Discovery"
 	Verbosity = 0
 )
 
