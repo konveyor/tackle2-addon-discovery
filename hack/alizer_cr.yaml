@@ -1,8 +1,8 @@
 apiVersion: tackle.konveyor.io/v1alpha1
 kind: Addon
 metadata:
-  name: alizer
+  name: language-discovery
   namespace: konveyor-tackle
 spec:
-  image: 'quay.io/slucidi/tackle2-addon-alizer:latest'
+  image: 'quay.io/konveyor/tackle2-addon-discovery:latest'
   imagePullPolicy: Always

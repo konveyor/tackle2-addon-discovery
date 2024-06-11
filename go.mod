@@ -1,4 +1,4 @@
-module github.com/mansam/tackle2-addon-alizer
+module github.com/konveyor/tackle2-addon-discovery
 
 go 1.21
 

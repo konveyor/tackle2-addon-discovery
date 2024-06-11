@@ -9,7 +9,7 @@ curl -k -X POST ${host}/tasks \
 "
 ---
 state: Ready
-addon: alizer
+addon: language-discovery
 application:
   id: "${application}"
 data: {}
