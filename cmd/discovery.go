@@ -20,7 +20,7 @@ const (
 var Categories = []string{CategoryLanguage, CategoryFramework, CategoryTooling}
 
 // Tag the application with discovered attributes.
-func Tag(application *api.Application) (err error) {
+func Tag(application *api.Application, source string) (err error) {
 	cats, err := ensureCategories()
 	if err != nil {
 		return
@@ -60,7 +60,7 @@ func Tag(application *api.Application) (err error) {
 		}
 	}
 	appTags := addon.Application.Tags(application.ID)
-	appTags.Source(Source)
+	appTags.Source(source)
 	err = appTags.Replace(ids)
 	return
 }
