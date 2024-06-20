@@ -14,11 +14,11 @@ var (
 	Dir       = ""
 	SourceDir = ""
 	Source    = "Discovery"
-	Verbosity = 0
 )
 
 type Data struct {
 	Repository repository.SCM
+	Source     string
 }
 
 func init() {
@@ -32,6 +32,9 @@ func main() {
 		err = addon.DataWith(d)
 		if err != nil {
 			return
+		}
+		if d.Source == "" {
+			d.Source = Source
 		}
 		//
 		// Fetch application.
@@ -51,7 +54,7 @@ func main() {
 		if err != nil {
 			return
 		}
-		err = Tag(application)
+		err = Tag(application, d.Source)
 		if err != nil {
 			return
 		}
