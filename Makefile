@@ -25,4 +25,4 @@ vet:
 
 # Ensure goimports installed.
 $(GOIMPORTS):
-	go install golang.org/x/tools/cmd/goimports@latest
+	go install golang.org/x/tools/cmd/goimports@v0.24.0
