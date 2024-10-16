@@ -14,6 +14,8 @@ RUN microdnf -y install \
  subversion \
  git \
  tar
+RUN echo -e "StrictHostKeyChecking no" \
+ "\nUserKnownHostsFile /dev/null" > /etc/ssh/ssh_config.d/99-konveyor.conf
 ENV HOME=/addon ADDON=/addon
 WORKDIR /addon
 ARG GOPATH=/opt/app-root
