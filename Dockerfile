@@ -4,7 +4,6 @@ COPY --chown=1001:0 . .
 RUN make cmd
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
-USER root
 RUN echo -e "[centos9]" \
  "\nname = centos9" \
  "\nbaseurl = http://mirror.stream.centos.org/9-stream/AppStream/\$basearch/os/" \
@@ -15,7 +14,8 @@ RUN microdnf -y install \
  subversion \
  git \
  tar
-USER default
+RUN echo -e "StrictHostKeyChecking no" \
+ "\nUserKnownHostsFile /dev/null" > /etc/ssh/ssh_config.d/99-konveyor.conf
 ENV HOME=/addon ADDON=/addon
 WORKDIR /addon
 ARG GOPATH=/opt/app-root
