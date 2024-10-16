@@ -4,8 +4,8 @@ go 1.21
 
 require (
 	github.com/devfile/alizer v1.6.0
-	github.com/konveyor/tackle2-addon v0.4.0
-	github.com/konveyor/tackle2-hub v0.4.1-0.20240617174440-68b5626680e3
+	github.com/konveyor/tackle2-addon v0.6.0-alpha.1.0.20241010185506-67652f48f2f2
+	github.com/konveyor/tackle2-hub v0.5.0-rc.1.0.20240726125502-8bb3c0911660
 )
 
 require (
