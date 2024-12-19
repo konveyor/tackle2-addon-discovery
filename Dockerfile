@@ -10,10 +10,13 @@ RUN echo -e "[centos9]" \
  "\nenabled = 1" \
  "\ngpgcheck = 0" > /etc/yum.repos.d/centos.repo
 RUN microdnf -y install \
+ glibc-langpack-en \
  openssh-clients \
  subversion \
  git \
  tar
+RUN sed -i 's/^LANG=.*/LANG="en_US.utf8"/' /etc/locale.conf
+ENV LANG=en_US.utf8
 RUN echo -e "StrictHostKeyChecking no" \
  "\nUserKnownHostsFile /dev/null" > /etc/ssh/ssh_config.d/99-konveyor.conf
 ENV HOME=/addon ADDON=/addon
