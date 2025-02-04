@@ -31,7 +31,8 @@ func Tag(application *api.Application, source string) (err error) {
 	}
 
 	ids := []uint{}
-	languages, err := recognizer.Analyze(SourceDir)
+	appDir := path.Join(SourceDir, application.Repository.Path)
+	languages, err := recognizer.Analyze(appDir)
 	for _, l := range languages {
 		for _, t := range tags(l, cats) {
 			if !seen[t.Category.ID][t.Name] {
@@ -44,7 +45,7 @@ func Tag(application *api.Application, source string) (err error) {
 			}
 		}
 	}
-	components, err := recognizer.DetectComponents(SourceDir)
+	components, err := recognizer.DetectComponents(appDir)
 	for _, c := range components {
 		for _, l := range c.Languages {
 			for _, t := range tags(l, cats) {
