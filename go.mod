@@ -4,12 +4,12 @@ go 1.21
 
 require (
 	github.com/devfile/alizer v1.6.0
-	github.com/konveyor/tackle2-addon v0.6.0-beta.1.0.20241122173506-cfd01afbf78f
-	github.com/konveyor/tackle2-hub v0.5.0-rc.1.0.20240726125502-8bb3c0911660
+	github.com/konveyor/tackle2-addon v0.7.0-alpha.2.0.20250416134249-7c0f33d51619
+	github.com/konveyor/tackle2-hub v0.7.0-alpha.2.0.20250416123026-821dd6b3c173
 )
 
 require (
-	github.com/Nerzal/gocloak/v10 v10.0.1 // indirect
+	github.com/Nerzal/gocloak/v13 v13.9.0 // indirect
 	github.com/PaesslerAG/gval v1.2.2 // indirect
 	github.com/andygrunwald/go-jira v1.16.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
@@ -37,16 +37,17 @@ require (
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
+	github.com/golang-jwt/jwt/v5 v5.0.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/gnostic v0.5.7-v3refs // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
-	github.com/google/uuid v1.5.0 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/hashicorp/go-version v1.7.0 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/jortel/go-utils v0.1.2 // indirect
+	github.com/jortel/go-utils v0.1.4 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.4 // indirect
@@ -56,6 +57,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/moby/buildkit v0.14.0 // indirect
+	github.com/moby/spdystream v0.2.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
