@@ -127,8 +127,6 @@ github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
 github.com/jortel/go-utils v0.1.4 h1:DzrID+gI9urEGkOoXYGYIKA/bozEIxmcYV/4cdVjW58=
 github.com/jortel/go-utils v0.1.4/go.mod h1:7vzFYbnb91+ltjjAmCv2jVL4CKX7Onz1i2EQPAvw9Cs=
-github.com/jortel/tackle2-hub v0.0.0-20250604165439-7716549e4c02 h1:g7sUrFZx/geZharbpBKN4TDUk3XHgQ+V1gmbH8crFFc=
-github.com/jortel/tackle2-hub v0.0.0-20250604165439-7716549e4c02/go.mod h1:RdQChIneyr3sRRg9X9r2f+EYGLVKXVPiFApOSy3Nq0U=
 github.com/josharian/intern v1.0.0 h1:vlS4z54oSdjm0bgjRigI+G1HpF+tI+9rE5LLzOg8HmY=
 github.com/josharian/intern v1.0.0/go.mod h1:5DoeVV0s6jJacbCEi61lwdGj/aVlrQvzHFFd8Hwg//Y=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
@@ -140,6 +138,8 @@ github.com/klauspost/cpuid/v2 v2.2.4 h1:acbojRNwl3o09bUq+yDCtZFc1aiwaAAxtcn8YkZX
 github.com/klauspost/cpuid/v2 v2.2.4/go.mod h1:RVVoqg1df56z8g3pUjL/3lE5UfnlrJX8tyFgg4nqhuY=
 github.com/konveyor/tackle2-addon v0.7.0-alpha.2.0.20250416134249-7c0f33d51619 h1:BI/0DisZHAGuuQ3PUWNYRQM8M15R5P4WrSeMyHo81lU=
 github.com/konveyor/tackle2-addon v0.7.0-alpha.2.0.20250416134249-7c0f33d51619/go.mod h1:Q71YvZ1e7xWH7/CqWOHYWST0Xbq2s3NOrNhDbAsyMPk=
+github.com/konveyor/tackle2-hub v0.7.0-alpha.2.0.20250623131241-e20023a76c4c h1:nwQmkIxRourGXU5vviaF4BjuNVTnOht5eOBY4++00Ls=
+github.com/konveyor/tackle2-hub v0.7.0-alpha.2.0.20250623131241-e20023a76c4c/go.mod h1:RdQChIneyr3sRRg9X9r2f+EYGLVKXVPiFApOSy3Nq0U=
 github.com/kr/pretty v0.2.0/go.mod h1:ipq/a2n7PKx3OHsz4KJII5eveXtPO4qwEXGdVfWzfnI=
 github.com/kr/pretty v0.2.1/go.mod h1:ipq/a2n7PKx3OHsz4KJII5eveXtPO4qwEXGdVfWzfnI=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
