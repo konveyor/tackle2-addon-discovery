@@ -116,6 +116,15 @@ func FetchRepository(application *api.Application) (err error) {
 		err = errors.New("application repository not defined")
 		return
 	}
+	var options []any
+	idapi := addon.Application.Identity(application.ID)
+	identity, found, err := idapi.Find("source")
+	if err != nil {
+		return
+	}
+	if found {
+		options = append(options, identity)
+	}
 	SourceDir = path.Join(
 		SourceDir,
 		strings.Split(
@@ -126,7 +135,7 @@ func FetchRepository(application *api.Application) (err error) {
 	rp, err = repository.New(
 		SourceDir,
 		application.Repository,
-		application.Identities)
+		options...)
 	if err != nil {
 		return
 	}
