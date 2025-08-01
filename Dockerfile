@@ -17,6 +17,7 @@ RUN microdnf -y install \
  tar
 RUN sed -i 's/^LANG=.*/LANG="en_US.utf8"/' /etc/locale.conf
 ENV LANG=en_US.utf8
+RUN echo "addon:x:1001:1001:addon user:/addon:/sbin/nologin" >> /etc/passwd
 RUN echo -e "StrictHostKeyChecking no" \
  "\nUserKnownHostsFile /dev/null" > /etc/ssh/ssh_config.d/99-konveyor.conf
 ENV HOME=/addon ADDON=/addon
