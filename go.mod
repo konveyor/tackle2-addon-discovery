@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/devfile/alizer v1.6.0
-	github.com/konveyor/tackle2-addon v0.7.0-alpha.2.0.20250416134249-7c0f33d51619
+	github.com/konveyor/tackle2-addon v0.7.2-0.20250903122049-abf0694112d6
 	github.com/konveyor/tackle2-hub v0.7.0-alpha.2.0.20250416123026-821dd6b3c173
 )
 
