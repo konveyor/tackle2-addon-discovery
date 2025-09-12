@@ -120,8 +120,10 @@ func FetchRepository(application *api.Application) (err error) {
 	var options []any
 	filter := binding.Filter{}
 	filter.And("role").Eq("source")
+	filter2 := binding.Filter{}
+	filter2.And("kind").Eq("source")
 	idapi := addon.Application.Identity(application.ID)
-	identity, found, err := idapi.Find(filter)
+	identity, found, err := idapi.Find(filter, filter2)
 	if err != nil {
 		return
 	}
