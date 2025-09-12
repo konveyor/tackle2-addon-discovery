@@ -9,6 +9,7 @@ import (
 	"github.com/devfile/alizer/pkg/apis/recognizer"
 	"github.com/konveyor/tackle2-addon/repository"
 	"github.com/konveyor/tackle2-hub/api"
+	"github.com/konveyor/tackle2-hub/binding"
 )
 
 const (
@@ -117,8 +118,10 @@ func FetchRepository(application *api.Application) (err error) {
 		return
 	}
 	var options []any
+	filter := binding.Filter{}
+	filter.And("role").Eq("source")
 	idapi := addon.Application.Identity(application.ID)
-	identity, found, err := idapi.Find("source")
+	identity, found, err := idapi.Find(filter)
 	if err != nil {
 		return
 	}
