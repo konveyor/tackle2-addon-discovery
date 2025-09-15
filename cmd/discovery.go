@@ -117,8 +117,11 @@ func FetchRepository(application *api.Application) (err error) {
 		return
 	}
 	var options []any
-	idapi := addon.Application.Identity(application.ID)
-	identity, found, err := idapi.Find("source")
+	identity, found, err :=
+		addon.Application.Identity(application.ID).Search().
+			Direct("source").
+			Indirect("source").
+			Find()
 	if err != nil {
 		return
 	}
