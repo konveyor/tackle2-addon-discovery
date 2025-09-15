@@ -156,8 +156,8 @@ github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+o
 github.com/klauspost/cpuid/v2 v2.0.9/go.mod h1:FInQzS24/EEf25PyTYn52gqo7WaD8xa0213Md/qVLRg=
 github.com/klauspost/cpuid/v2 v2.2.4 h1:acbojRNwl3o09bUq+yDCtZFc1aiwaAAxtcn8YkZXnvk=
 github.com/klauspost/cpuid/v2 v2.2.4/go.mod h1:RVVoqg1df56z8g3pUjL/3lE5UfnlrJX8tyFgg4nqhuY=
-github.com/konveyor/tackle2-addon v0.8.0-beta.2.0.20250902130618-7007f002e757 h1:Ez2oh+fZNa/AScgvzkrN3YCNLk1gDJRqtKPxkNGvzBM=
-github.com/konveyor/tackle2-addon v0.8.0-beta.2.0.20250902130618-7007f002e757/go.mod h1:mITXAU1o/8ZdBoGacaTZxXORfFe1q2S74W9RfTHHm7A=
+github.com/konveyor/tackle2-addon v0.8.0-beta.4 h1:ZKm9vO9T+dcly8tDCJim/j3bR0N1JYaAknpMOgxbID0=
+github.com/konveyor/tackle2-addon v0.8.0-beta.4/go.mod h1:mITXAU1o/8ZdBoGacaTZxXORfFe1q2S74W9RfTHHm7A=
 github.com/konveyor/tackle2-hub v0.8.0-beta.4.0.20250915141536-ccf24542dd57 h1:M+V7tWyMoX1Ewty3W0A4P0jBjx+NAWyA9Oi0qclSnSk=
 github.com/konveyor/tackle2-hub v0.8.0-beta.4.0.20250915141536-ccf24542dd57/go.mod h1:H51NdPwgKzuYgxkHUWPXQNVkWPI7gn5iKQgtQhrFrYE=
 github.com/kr/pretty v0.2.0/go.mod h1:ipq/a2n7PKx3OHsz4KJII5eveXtPO4qwEXGdVfWzfnI=
