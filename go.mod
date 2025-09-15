@@ -5,10 +5,8 @@ go 1.21
 require (
 	github.com/devfile/alizer v1.6.0
 	github.com/konveyor/tackle2-addon v0.8.0-beta.2.0.20250902130618-7007f002e757
-	github.com/konveyor/tackle2-hub v0.7.0-alpha.2.0.20250623131241-e20023a76c4c
+	github.com/konveyor/tackle2-hub v0.8.0-beta.4.0.20250915141536-ccf24542dd57
 )
-
-replace github.com/konveyor/tackle2-hub => github.com/jortel/tackle2-hub v0.0.0-20250912202113-72cee0d71b8e
 
 require (
 	github.com/Nerzal/gocloak/v13 v13.9.0 // indirect
