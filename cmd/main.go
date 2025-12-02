@@ -4,8 +4,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/konveyor/tackle2-addon/repository"
-	"github.com/konveyor/tackle2-addon/ssh"
+	"github.com/konveyor/tackle2-addon/scm"
 	hub "github.com/konveyor/tackle2-hub/addon"
 )
 
@@ -17,7 +16,7 @@ var (
 )
 
 type Data struct {
-	Repository repository.SCM
+	Repository scm.SCM
 	Source     string
 }
 
@@ -40,13 +39,6 @@ func main() {
 		// Fetch application.
 		addon.Activity("Fetching application.")
 		application, err := addon.Task.Application()
-		if err != nil {
-			return
-		}
-		//
-		// SSH
-		agent := ssh.Agent{}
-		err = agent.Start()
 		if err != nil {
 			return
 		}
