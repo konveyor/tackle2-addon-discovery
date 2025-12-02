@@ -7,7 +7,7 @@ import (
 
 	alizer "github.com/devfile/alizer/pkg/apis/model"
 	"github.com/devfile/alizer/pkg/apis/recognizer"
-	"github.com/konveyor/tackle2-addon/repository"
+	"github.com/konveyor/tackle2-addon/scm"
 	"github.com/konveyor/tackle2-hub/api"
 )
 
@@ -116,8 +116,7 @@ func FetchRepository(application *api.Application) (err error) {
 		err = errors.New("application repository not defined")
 		return
 	}
-	var options []any
-	identity, found, err :=
+	identity, _, err :=
 		addon.Application.Identity(application.ID).Search().
 			Direct("source").
 			Indirect("source").
@@ -125,20 +124,17 @@ func FetchRepository(application *api.Application) (err error) {
 	if err != nil {
 		return
 	}
-	if found {
-		options = append(options, identity)
-	}
 	SourceDir = path.Join(
 		SourceDir,
 		strings.Split(
 			path.Base(
 				application.Repository.URL),
 			".")[0])
-	var rp repository.SCM
-	rp, err = repository.New(
+	var rp scm.SCM
+	rp, err = scm.New(
 		SourceDir,
-		application.Repository,
-		options...)
+		*application.Repository,
+		identity)
 	if err != nil {
 		return
 	}
