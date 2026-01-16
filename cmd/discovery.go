@@ -7,8 +7,8 @@ import (
 
 	alizer "github.com/devfile/alizer/pkg/apis/model"
 	"github.com/devfile/alizer/pkg/apis/recognizer"
-	"github.com/konveyor/tackle2-addon/scm"
-	"github.com/konveyor/tackle2-hub/api"
+	"github.com/konveyor/tackle2-hub/shared/addon/scm"
+	"github.com/konveyor/tackle2-hub/shared/api"
 )
 
 const (

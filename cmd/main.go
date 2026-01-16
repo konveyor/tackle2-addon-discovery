@@ -4,8 +4,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/konveyor/tackle2-addon/scm"
-	hub "github.com/konveyor/tackle2-hub/addon"
+	hub "github.com/konveyor/tackle2-hub/shared/addon"
+	"github.com/konveyor/tackle2-hub/shared/addon/scm"
 )
 
 var (
