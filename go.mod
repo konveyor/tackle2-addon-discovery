@@ -4,7 +4,7 @@ go 1.22.0
 
 require (
 	github.com/devfile/alizer v1.6.0
-	github.com/konveyor/tackle2-hub/shared v0.0.0-20260306170918-3a8c8be2a7b7
+	github.com/konveyor/tackle2-hub/shared v0.0.0-20260306231449-91eaaa65805c
 )
 
 require (
