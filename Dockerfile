@@ -1,9 +1,9 @@
-FROM registry.access.redhat.com/ubi9/go-toolset:latest as addon
+FROM registry.access.redhat.com/ubi10/go-toolset:latest as addon
 ENV GOPATH=$APP_ROOT
 COPY --chown=1001:0 . .
 RUN make cmd
 
-FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
+FROM registry.access.redhat.com/ubi10/ubi-minimal:latest
 RUN microdnf -y install \
  glibc-langpack-en \
  openssh-clients \
