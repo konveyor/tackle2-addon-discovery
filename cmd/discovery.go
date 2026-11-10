@@ -2,7 +2,10 @@ package main
 
 import (
 	"errors"
+	"log"
+	"os"
 	"path"
+	"strconv"
 	"strings"
 
 	alizer "github.com/devfile/alizer/pkg/apis/model"
@@ -19,6 +22,38 @@ const (
 
 var Categories = []string{CategoryLanguage, CategoryFramework, CategoryTooling}
 
+// Default minimum share (percent) a language must hold of the repository's
+// programming-language files to be tagged. Alizer reports every language
+// above its own (much lower) 2% threshold, which tags languages that exist
+// only as a couple of stray files in sparse repositories.
+const defaultMinLanguageWeight = 10.0
+
+// minLanguageWeight returns the language weight threshold, overridable via
+// the MIN_LANGUAGE_WEIGHT environment variable (percent).
+func minLanguageWeight() float64 {
+	if v, err := strconv.ParseFloat(os.Getenv("MIN_LANGUAGE_WEIGHT"), 64); err == nil && v >= 0 {
+		return v
+	}
+	return defaultMinLanguageWeight
+}
+
+// filterLanguages drops languages whose weight (share of the repository's
+// programming-language files, as computed by alizer) is below the threshold.
+// Languages reported by component detection are NOT filtered here; they are
+// backed by build files.
+func filterLanguages(languages []alizer.Language) []alizer.Language {
+	threshold := minLanguageWeight()
+	filtered := make([]alizer.Language, 0, len(languages))
+	for _, l := range languages {
+		if l.Weight < threshold {
+			log.Printf("(info) Skipping %s language with weight %.1f%% below threshold %.1f%%.", l.Name, l.Weight, threshold)
+			continue
+		}
+		filtered = append(filtered, l)
+	}
+	return filtered
+}
+
 // Tag the application with discovered attributes.
 func Tag(application *api.Application, source string) (err error) {
 	cats, err := ensureCategories()
@@ -33,6 +68,10 @@ func Tag(application *api.Application, source string) (err error) {
 	ids := []uint{}
 	appDir := path.Join(SourceDir, application.Repository.Path)
 	languages, err := recognizer.Analyze(appDir)
+	if err != nil {
+		return
+	}
+	languages = filterLanguages(languages)
 	for _, l := range languages {
 		for _, t := range tags(l, cats) {
 			if !seen[t.Category.ID][t.Name] {
